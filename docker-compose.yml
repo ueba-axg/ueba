@@ -1,0 +1,18 @@
+services:
+  ueba-eng:
+    build: .
+    container_name: ueba_eng
+    # 外部に公開するポート => "ホスト側:コンテナ側"
+    ports:
+      - "10022:22"     # SSH (ホストの10022 => コンテナの22)
+      - "10080:80"     # HTTP (ホストの10080 => コンテナの80)
+      - "10443:443"    # HTTP (ホストの10443 => コンテナの443)
+    volumes:
+      - ./logs/httpd:/var/log/httpd
+      - ./logs/ueba:/var/log/ueba  # 任意: ログディレクトリをホストにマウントしたい場合など
+      - ./reports:/var/www/html/reports
+      - ./uploads:/home/ueba/uploads
+      - ./scripts:/home/ueba/scripts
+    tty: true
+    stdin_open: true
+
