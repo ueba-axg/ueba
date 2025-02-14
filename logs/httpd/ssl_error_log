@@ -1,0 +1,44 @@
+[Thu Feb 13 14:19:34.636731 2025] [ssl:warn] [pid 1:tid 1] AH01906: 172.18.0.2:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Thu Feb 13 14:19:34.636760 2025] [ssl:warn] [pid 1:tid 1] AH01909: 172.18.0.2:443:0 server certificate does NOT include an ID which matches the server name
+[Thu Feb 13 14:19:34.645625 2025] [ssl:warn] [pid 1:tid 1] AH01906: 172.18.0.2:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Thu Feb 13 14:19:34.645654 2025] [ssl:warn] [pid 1:tid 1] AH01909: 172.18.0.2:443:0 server certificate does NOT include an ID which matches the server name
+[Thu Feb 13 14:29:40.422868 2025] [ssl:warn] [pid 1:tid 1] AH01906: 172.18.0.2:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Thu Feb 13 14:29:40.422898 2025] [ssl:warn] [pid 1:tid 1] AH01909: 172.18.0.2:443:0 server certificate does NOT include an ID which matches the server name
+[Thu Feb 13 14:29:40.431231 2025] [ssl:warn] [pid 1:tid 1] AH01906: 172.18.0.2:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Thu Feb 13 14:29:40.431245 2025] [ssl:warn] [pid 1:tid 1] AH01909: 172.18.0.2:443:0 server certificate does NOT include an ID which matches the server name
+[Thu Feb 13 14:31:46.667189 2025] [ssl:warn] [pid 1:tid 1] AH01906: 172.18.0.2:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Thu Feb 13 14:31:46.667201 2025] [ssl:warn] [pid 1:tid 1] AH01909: 172.18.0.2:443:0 server certificate does NOT include an ID which matches the server name
+[Thu Feb 13 14:31:46.673131 2025] [ssl:warn] [pid 1:tid 1] AH01906: 172.18.0.2:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Thu Feb 13 14:31:46.673140 2025] [ssl:warn] [pid 1:tid 1] AH01909: 172.18.0.2:443:0 server certificate does NOT include an ID which matches the server name
+[Thu Feb 13 14:38:22.576774 2025] [ssl:warn] [pid 1:tid 1] AH01906: 172.18.0.2:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Thu Feb 13 14:38:22.576796 2025] [ssl:warn] [pid 1:tid 1] AH01909: 172.18.0.2:443:0 server certificate does NOT include an ID which matches the server name
+[Thu Feb 13 14:38:22.583910 2025] [ssl:warn] [pid 1:tid 1] AH01906: 172.18.0.2:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Thu Feb 13 14:38:22.583921 2025] [ssl:warn] [pid 1:tid 1] AH01909: 172.18.0.2:443:0 server certificate does NOT include an ID which matches the server name
+[Thu Feb 13 15:11:21.225626 2025] [ssl:warn] [pid 1:tid 1] AH01906: 172.18.0.2:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Thu Feb 13 15:11:21.226153 2025] [ssl:warn] [pid 1:tid 1] AH01909: 172.18.0.2:443:0 server certificate does NOT include an ID which matches the server name
+[Thu Feb 13 15:11:21.232234 2025] [ssl:warn] [pid 1:tid 1] AH01906: 172.18.0.2:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Thu Feb 13 15:11:21.232243 2025] [ssl:warn] [pid 1:tid 1] AH01909: 172.18.0.2:443:0 server certificate does NOT include an ID which matches the server name
+[Thu Feb 13 15:15:40.038778 2025] [ssl:warn] [pid 1:tid 1] AH01906: 172.18.0.2:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Thu Feb 13 15:15:40.038795 2025] [ssl:warn] [pid 1:tid 1] AH01909: 172.18.0.2:443:0 server certificate does NOT include an ID which matches the server name
+[Thu Feb 13 15:15:40.045397 2025] [ssl:warn] [pid 1:tid 1] AH01906: 172.18.0.2:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Thu Feb 13 15:15:40.045408 2025] [ssl:warn] [pid 1:tid 1] AH01909: 172.18.0.2:443:0 server certificate does NOT include an ID which matches the server name
+[Thu Feb 13 15:50:49.760144 2025] [ssl:warn] [pid 1:tid 1] AH01906: example.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Thu Feb 13 15:50:49.760158 2025] [ssl:warn] [pid 1:tid 1] AH01909: example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Thu Feb 13 15:50:49.766419 2025] [ssl:warn] [pid 1:tid 1] AH01906: example.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Thu Feb 13 15:50:49.766428 2025] [ssl:warn] [pid 1:tid 1] AH01909: example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Thu Feb 13 15:52:53.003266 2025] [ssl:warn] [pid 1:tid 1] AH01906: ueba.axg.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Thu Feb 13 15:52:53.003291 2025] [ssl:warn] [pid 1:tid 1] AH01909: ueba.axg.com:443:0 server certificate does NOT include an ID which matches the server name
+[Thu Feb 13 15:52:53.014225 2025] [ssl:warn] [pid 1:tid 1] AH01906: ueba.axg.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Thu Feb 13 15:52:53.014237 2025] [ssl:warn] [pid 1:tid 1] AH01909: ueba.axg.com:443:0 server certificate does NOT include an ID which matches the server name
+[Thu Feb 13 15:54:13.677530 2025] [ssl:warn] [pid 1:tid 1] AH01906: ueba.axg.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Thu Feb 13 15:54:13.677559 2025] [ssl:warn] [pid 1:tid 1] AH01909: ueba.axg.com:443:0 server certificate does NOT include an ID which matches the server name
+[Thu Feb 13 15:54:13.683734 2025] [ssl:warn] [pid 1:tid 1] AH01906: ueba.axg.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Thu Feb 13 15:54:13.683745 2025] [ssl:warn] [pid 1:tid 1] AH01909: ueba.axg.com:443:0 server certificate does NOT include an ID which matches the server name
+[Thu Feb 13 16:27:21.691043 2025] [ssl:warn] [pid 1:tid 1] AH01906: ueba.axg.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Thu Feb 13 16:27:21.691055 2025] [ssl:warn] [pid 1:tid 1] AH01909: ueba.axg.com:443:0 server certificate does NOT include an ID which matches the server name
+[Thu Feb 13 16:27:21.696699 2025] [ssl:warn] [pid 1:tid 1] AH01906: ueba.axg.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Thu Feb 13 16:27:21.696710 2025] [ssl:warn] [pid 1:tid 1] AH01909: ueba.axg.com:443:0 server certificate does NOT include an ID which matches the server name
+[Thu Feb 13 16:42:07.985457 2025] [ssl:warn] [pid 1:tid 1] AH01906: ueba.axg.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Thu Feb 13 16:42:07.985469 2025] [ssl:warn] [pid 1:tid 1] AH01909: ueba.axg.com:443:0 server certificate does NOT include an ID which matches the server name
+[Thu Feb 13 16:42:07.991859 2025] [ssl:warn] [pid 1:tid 1] AH01906: ueba.axg.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Thu Feb 13 16:42:07.991870 2025] [ssl:warn] [pid 1:tid 1] AH01909: ueba.axg.com:443:0 server certificate does NOT include an ID which matches the server name
