@@ -1,0 +1,8 @@
+# Temp files
+.env
+
+# Volume direcctories
+logs/
+uploads/
+reports/
+
