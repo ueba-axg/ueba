@@ -58,3 +58,54 @@ AH00558: httpd: Could not reliably determine the server's fully qualified domain
 [Thu Feb 13 16:42:07.991934 2025] [lbmethod_heartbeat:notice] [pid 1:tid 1] AH02282: No slotmem from mod_heartmonitor
 [Thu Feb 13 16:42:07.993708 2025] [mpm_event:notice] [pid 1:tid 1] AH00489: Apache/2.4.62 (AlmaLinux) OpenSSL/3.2.2 configured -- resuming normal operations
 [Thu Feb 13 16:42:07.993723 2025] [core:notice] [pid 1:tid 1] AH00094: Command line: '/usr/sbin/httpd -D FOREGROUND'
+[Fri Feb 14 13:43:38.200776 2025] [mpm_event:notice] [pid 1:tid 1] AH00491: caught SIGTERM, shutting down
+[Fri Feb 14 13:46:48.910012 2025] [suexec:notice] [pid 1:tid 1] AH01232: suEXEC mechanism enabled (wrapper: /usr/sbin/suexec)
+[Fri Feb 14 13:46:48.918232 2025] [lbmethod_heartbeat:notice] [pid 1:tid 1] AH02282: No slotmem from mod_heartmonitor
+[Fri Feb 14 13:46:48.919991 2025] [mpm_event:notice] [pid 1:tid 1] AH00489: Apache/2.4.62 (AlmaLinux) OpenSSL/3.2.2 configured -- resuming normal operations
+[Fri Feb 14 13:46:48.920014 2025] [core:notice] [pid 1:tid 1] AH00094: Command line: '/usr/sbin/httpd -D FOREGROUND'
+[Fri Feb 14 14:19:26.874880 2025] [mpm_event:notice] [pid 1:tid 1] AH00491: caught SIGTERM, shutting down
+[Fri Feb 14 14:27:15.415619 2025] [suexec:notice] [pid 1:tid 1] AH01232: suEXEC mechanism enabled (wrapper: /usr/sbin/suexec)
+[Fri Feb 14 14:27:15.422782 2025] [lbmethod_heartbeat:notice] [pid 1:tid 1] AH02282: No slotmem from mod_heartmonitor
+[Fri Feb 14 14:27:15.424301 2025] [mpm_event:notice] [pid 1:tid 1] AH00489: Apache/2.4.62 (AlmaLinux) OpenSSL/3.2.2 configured -- resuming normal operations
+[Fri Feb 14 14:27:15.424313 2025] [core:notice] [pid 1:tid 1] AH00094: Command line: '/usr/sbin/httpd -D FOREGROUND'
+[Fri Feb 14 14:29:51.551164 2025] [mpm_event:notice] [pid 1:tid 1] AH00491: caught SIGTERM, shutting down
+[Fri Feb 14 14:29:53.983716 2025] [suexec:notice] [pid 1:tid 1] AH01232: suEXEC mechanism enabled (wrapper: /usr/sbin/suexec)
+[Fri Feb 14 14:29:53.991985 2025] [lbmethod_heartbeat:notice] [pid 1:tid 1] AH02282: No slotmem from mod_heartmonitor
+[Fri Feb 14 14:29:53.994042 2025] [mpm_event:notice] [pid 1:tid 1] AH00489: Apache/2.4.62 (AlmaLinux) OpenSSL/3.2.2 configured -- resuming normal operations
+[Fri Feb 14 14:29:53.994065 2025] [core:notice] [pid 1:tid 1] AH00094: Command line: '/usr/sbin/httpd -D FOREGROUND'
+[Fri Feb 14 14:32:43.440980 2025] [mpm_event:notice] [pid 1:tid 1] AH00491: caught SIGTERM, shutting down
+[Fri Feb 14 14:32:54.872388 2025] [suexec:notice] [pid 1:tid 1] AH01232: suEXEC mechanism enabled (wrapper: /usr/sbin/suexec)
+[Fri Feb 14 14:32:54.880313 2025] [lbmethod_heartbeat:notice] [pid 1:tid 1] AH02282: No slotmem from mod_heartmonitor
+[Fri Feb 14 14:32:54.882457 2025] [mpm_event:notice] [pid 1:tid 1] AH00489: Apache/2.4.62 (AlmaLinux) OpenSSL/3.2.2 configured -- resuming normal operations
+[Fri Feb 14 14:32:54.882474 2025] [core:notice] [pid 1:tid 1] AH00094: Command line: '/usr/sbin/httpd -D FOREGROUND'
+[Fri Feb 14 15:01:00.142722 2025] [mpm_event:notice] [pid 1:tid 1] AH00491: caught SIGTERM, shutting down
+[Fri Feb 14 15:54:15.703190 2025] [suexec:notice] [pid 1:tid 1] AH01232: suEXEC mechanism enabled (wrapper: /usr/sbin/suexec)
+[Fri Feb 14 15:54:15.710523 2025] [lbmethod_heartbeat:notice] [pid 1:tid 1] AH02282: No slotmem from mod_heartmonitor
+[Fri Feb 14 15:54:15.712058 2025] [mpm_event:notice] [pid 1:tid 1] AH00489: Apache/2.4.62 (AlmaLinux) OpenSSL/3.2.2 configured -- resuming normal operations
+[Fri Feb 14 15:54:15.712069 2025] [core:notice] [pid 1:tid 1] AH00094: Command line: '/usr/sbin/httpd -D FOREGROUND'
+[Sat Feb 15 16:29:56.786974 2025] [mpm_event:notice] [pid 1:tid 1] AH00491: caught SIGTERM, shutting down
+[Sat Feb 15 16:33:15.868171 2025] [suexec:notice] [pid 1:tid 1] AH01232: suEXEC mechanism enabled (wrapper: /usr/sbin/suexec)
+[Sat Feb 15 16:33:15.876885 2025] [lbmethod_heartbeat:notice] [pid 1:tid 1] AH02282: No slotmem from mod_heartmonitor
+[Sat Feb 15 16:33:15.878957 2025] [mpm_event:notice] [pid 1:tid 1] AH00489: Apache/2.4.62 (AlmaLinux) OpenSSL/3.2.2 configured -- resuming normal operations
+[Sat Feb 15 16:33:15.878973 2025] [core:notice] [pid 1:tid 1] AH00094: Command line: '/usr/sbin/httpd -D FOREGROUND'
+[Sat Feb 15 16:46:17.150076 2025] [mpm_event:notice] [pid 1:tid 1] AH00491: caught SIGTERM, shutting down
+[Sat Feb 15 16:46:31.253301 2025] [suexec:notice] [pid 1:tid 1] AH01232: suEXEC mechanism enabled (wrapper: /usr/sbin/suexec)
+[Sat Feb 15 16:46:31.261219 2025] [lbmethod_heartbeat:notice] [pid 1:tid 1] AH02282: No slotmem from mod_heartmonitor
+[Sat Feb 15 16:46:31.262950 2025] [mpm_event:notice] [pid 1:tid 1] AH00489: Apache/2.4.62 (AlmaLinux) OpenSSL/3.2.2 configured -- resuming normal operations
+[Sat Feb 15 16:46:31.262965 2025] [core:notice] [pid 1:tid 1] AH00094: Command line: '/usr/sbin/httpd -D FOREGROUND'
+[Sat Feb 15 22:19:13.218153 2025] [mpm_event:notice] [pid 1:tid 1] AH00491: caught SIGTERM, shutting down
+[Sat Feb 15 22:19:19.007728 2025] [suexec:notice] [pid 1:tid 1] AH01232: suEXEC mechanism enabled (wrapper: /usr/sbin/suexec)
+[Sat Feb 15 22:19:19.014966 2025] [lbmethod_heartbeat:notice] [pid 1:tid 1] AH02282: No slotmem from mod_heartmonitor
+[Sat Feb 15 22:19:19.016603 2025] [mpm_event:notice] [pid 1:tid 1] AH00489: Apache/2.4.62 (AlmaLinux) OpenSSL/3.2.2 configured -- resuming normal operations
+[Sat Feb 15 22:19:19.016615 2025] [core:notice] [pid 1:tid 1] AH00094: Command line: '/usr/sbin/httpd -D FOREGROUND'
+[Sat Feb 15 22:51:51.210064 2025] [mpm_event:notice] [pid 1:tid 1] AH00491: caught SIGTERM, shutting down
+[Sat Feb 15 22:53:03.628827 2025] [suexec:notice] [pid 1:tid 1] AH01232: suEXEC mechanism enabled (wrapper: /usr/sbin/suexec)
+[Sat Feb 15 22:53:03.638740 2025] [lbmethod_heartbeat:notice] [pid 1:tid 1] AH02282: No slotmem from mod_heartmonitor
+[Sat Feb 15 22:53:03.640804 2025] [mpm_event:notice] [pid 1:tid 1] AH00489: Apache/2.4.62 (AlmaLinux) OpenSSL/3.2.2 configured -- resuming normal operations
+[Sat Feb 15 22:53:03.640819 2025] [core:notice] [pid 1:tid 1] AH00094: Command line: '/usr/sbin/httpd -D FOREGROUND'
+[Sun Feb 16 13:16:09.969466 2025] [mpm_event:notice] [pid 1:tid 1] AH00491: caught SIGTERM, shutting down
+[Sun Feb 16 13:16:12.780680 2025] [suexec:notice] [pid 1:tid 1] AH01232: suEXEC mechanism enabled (wrapper: /usr/sbin/suexec)
+[Sun Feb 16 13:16:12.787717 2025] [lbmethod_heartbeat:notice] [pid 1:tid 1] AH02282: No slotmem from mod_heartmonitor
+[Sun Feb 16 13:16:12.789363 2025] [mpm_event:notice] [pid 1:tid 1] AH00489: Apache/2.4.62 (AlmaLinux) OpenSSL/3.2.2 configured -- resuming normal operations
+[Sun Feb 16 13:16:12.789377 2025] [core:notice] [pid 1:tid 1] AH00094: Command line: '/usr/sbin/httpd -D FOREGROUND'
+[Sun Feb 16 13:18:45.123584 2025] [mpm_event:notice] [pid 1:tid 1] AH00491: caught SIGTERM, shutting down

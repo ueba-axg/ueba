@@ -1,6 +1,6 @@
 #!/bin/bash
-# 保存期間(日)
-DAYS_KEEP=90
+# 保存期間(日) from Environment variable defined in docker-compose.yml
+DAYS_KEEP=${DATA_KEEP_DAYS}
 
 # 監視対象ディレクトリ設定
 TARGET_DIR1="/home/ueba/uploads"
@@ -15,19 +15,23 @@ TARGET_DIRS=(${TARGET_DIR1} ${TARGET_DIR2})
 TARGET_EXTS=(${TARGET_EXT1} ${TARGET_EXT2})
 
 # Log file
-UEBA_CLEANUP_LOG=/var/log/ueba/cleanup.log
+exec >> /var/log/ueba/cleanup.log 2>&1
+# ログ出力関数
+log_message() {
+    echo "`date '+%Y:%m:%d %H:%M:%S'` $0:$@"
+}
 
-echo "`date '+%Y:%m:%d %H:%M:%S'` - Clean up started" >> ${UEBA_CLEANUP_LOG}
+log_message "INFO : Clean up started : ${DAYS_KEEP}"
 
 # 現在の日付から90日以上前のファイルを削除
 for dir in "${TARGET_DIRS[@]}"; do
   if [ -d "$dir" ]; then
     for ext in "${TARGET_EXTS[@]}"; do
       find "$dir" -type f -name "$ext" -mtime +${DAYS_KEEP} -exec rm -f {} \;
-      echo "`date '+%Y:%m:%d %H:%M:%S'` - Cleaned up $ext files in $dir" >> ${UEBA_CLEANUP_LOG}
+      log_message "INFO : Cleaned up $ext files in $dir"
     done
   else
-    echo "`date '+%Y:%m:%d %H:%M:%S'` - Directory $dir not found, skipping..." >> ${UEBA_CLEANUP_LOG}
+    log_message "INFO : Directory $dir not found, skipping..."
   fi
 done
 

@@ -26,7 +26,6 @@ COPY --from=builder /usr/lib/jvm /usr/lib/jvm
 # - java-17-openjdk (Java 17 ランタイム/JDK)
 # - inotify-tools (ファイル監視コマンド)
 RUN microdnf -y install dnf \
-    && dnf -y update \
     && dnf -y install epel-release \
     && dnf -y update \
     && dnf -y install \
@@ -37,6 +36,7 @@ RUN microdnf -y install dnf \
          inotify-tools \
          cronie \
          findutils \
+    && dnf upgrade-minimal --security -y \
     && dnf clean all \
     && rm -rf /var/cache/dnf
 
@@ -52,11 +52,9 @@ RUN useradd -m -s /bin/bash ueba && \
 # SSH用ディレクトリ準備
 RUN mkdir -p /var/run/sshd
 
-# ホスト鍵を生成
-RUN ssh-keygen -A
-
 # - PasswordAuthentication no など、公開鍵認証のみ許可したい場合は記述
-RUN sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
+RUN sed -i 's/#PasswordAuthentication yes/PasswordAuthentication yes/' /etc/ssh/sshd_config
+RUN sed -i 's/#PubkeyAuthentication yes/PubkeyAuthentication yes/' /etc/ssh/sshd_config
 
 # 以下はrootユーザのログインを許可する場合のみ
 # RUN mkdir -p /var/run/sshd \
@@ -71,20 +69,12 @@ EXPOSE 22
 EXPOSE 80
 EXPOSE 443
 
-# 自己署名証明書の生成例 (CN=localhost, 有効期限3650日)
-RUN openssl req -new -newkey rsa:2048 -nodes \
-    -keyout /etc/pki/tls/private/localhost.key \
-    -x509 -days 3650 \
-    -out /etc/pki/tls/certs/localhost.crt \
-    -subj "/C=JP/ST=Tokyo/L=Chiyoda/O=MyOrg/CN=localhost"
-
 # スクリプトのコピー
 COPY ./sh/start.sh /home/ueba/start.sh
 COPY ./sh/monitor.sh /home/ueba/monitor.sh
 COPY ./sh/cleanup.sh /home/ueba/cleanup.sh
-COPY ./sh/cleanup.sh /home/ueba/scripts/cleanup.sh
-RUN  ln -s /home/ueba/scripts/cleanup.sh /etc/cron.daily/cleanup
-RUN chmod +x /home/ueba/start.sh /home/ueba/monitor.sh /home/ueba/scripts/cleanup.sh
+RUN  ln -s /home/ueba/cleanup.sh /etc/cron.daily/cleanup
+RUN chmod +x /home/ueba/start.sh /home/ueba/monitor.sh /home/ueba/cleanup.sh
 
 # コンテナ起動時のエントリーポイント
 ENTRYPOINT ["/home/ueba/start.sh"]

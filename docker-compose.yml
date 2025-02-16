@@ -1,7 +1,10 @@
 services:
   ueba-eng:
     build: .
+    image: masa555/ueba:ueba-0.8.0
     container_name: ueba_eng
+    environment:
+      - DATA_KEEP_DAYS=${DATA_KEEP_DAYS}
     # 外部に公開するポート => "ホスト側:コンテナ側"
     ports:
       - "10022:22"     # SSH (ホストの10022 => コンテナの22)
@@ -12,7 +15,13 @@ services:
       - ./logs/ueba:/var/log/ueba  # 任意: ログディレクトリをホストにマウントしたい場合など
       - ./reports:/var/www/html/reports
       - ./uploads:/home/ueba/uploads
-      - ./scripts:/home/ueba/scripts
+      - ssh_key:/home/ueba/.ssh
+      - sshd_key:/etc/ssh
+      - pki_keys:/etc/pki
     tty: true
     stdin_open: true
 
+volumes:
+  ssh_key:
+  sshd_key:
+  pki_keys:

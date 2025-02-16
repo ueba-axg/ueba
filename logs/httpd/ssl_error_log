@@ -42,3 +42,43 @@
 [Thu Feb 13 16:42:07.985469 2025] [ssl:warn] [pid 1:tid 1] AH01909: ueba.axg.com:443:0 server certificate does NOT include an ID which matches the server name
 [Thu Feb 13 16:42:07.991859 2025] [ssl:warn] [pid 1:tid 1] AH01906: ueba.axg.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
 [Thu Feb 13 16:42:07.991870 2025] [ssl:warn] [pid 1:tid 1] AH01909: ueba.axg.com:443:0 server certificate does NOT include an ID which matches the server name
+[Fri Feb 14 13:46:48.911290 2025] [ssl:warn] [pid 1:tid 1] AH01906: ueba.axg.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Fri Feb 14 13:46:48.911311 2025] [ssl:warn] [pid 1:tid 1] AH01909: ueba.axg.com:443:0 server certificate does NOT include an ID which matches the server name
+[Fri Feb 14 13:46:48.918145 2025] [ssl:warn] [pid 1:tid 1] AH01906: ueba.axg.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Fri Feb 14 13:46:48.918167 2025] [ssl:warn] [pid 1:tid 1] AH01909: ueba.axg.com:443:0 server certificate does NOT include an ID which matches the server name
+[Fri Feb 14 14:27:15.416846 2025] [ssl:warn] [pid 1:tid 1] AH01906: ueba.axg.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Fri Feb 14 14:27:15.416861 2025] [ssl:warn] [pid 1:tid 1] AH01909: ueba.axg.com:443:0 server certificate does NOT include an ID which matches the server name
+[Fri Feb 14 14:27:15.422720 2025] [ssl:warn] [pid 1:tid 1] AH01906: ueba.axg.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Fri Feb 14 14:27:15.422728 2025] [ssl:warn] [pid 1:tid 1] AH01909: ueba.axg.com:443:0 server certificate does NOT include an ID which matches the server name
+[Fri Feb 14 14:29:53.984969 2025] [ssl:warn] [pid 1:tid 1] AH01906: ueba.axg.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Fri Feb 14 14:29:53.984986 2025] [ssl:warn] [pid 1:tid 1] AH01909: ueba.axg.com:443:0 server certificate does NOT include an ID which matches the server name
+[Fri Feb 14 14:29:53.991906 2025] [ssl:warn] [pid 1:tid 1] AH01906: ueba.axg.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Fri Feb 14 14:29:53.991922 2025] [ssl:warn] [pid 1:tid 1] AH01909: ueba.axg.com:443:0 server certificate does NOT include an ID which matches the server name
+[Fri Feb 14 14:32:54.873791 2025] [ssl:warn] [pid 1:tid 1] AH01906: ueba.axg.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Fri Feb 14 14:32:54.873805 2025] [ssl:warn] [pid 1:tid 1] AH01909: ueba.axg.com:443:0 server certificate does NOT include an ID which matches the server name
+[Fri Feb 14 14:32:54.880209 2025] [ssl:warn] [pid 1:tid 1] AH01906: ueba.axg.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Fri Feb 14 14:32:54.880230 2025] [ssl:warn] [pid 1:tid 1] AH01909: ueba.axg.com:443:0 server certificate does NOT include an ID which matches the server name
+[Fri Feb 14 15:54:15.704416 2025] [ssl:warn] [pid 1:tid 1] AH01906: ueba.axg.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Fri Feb 14 15:54:15.704439 2025] [ssl:warn] [pid 1:tid 1] AH01909: ueba.axg.com:443:0 server certificate does NOT include an ID which matches the server name
+[Fri Feb 14 15:54:15.710449 2025] [ssl:warn] [pid 1:tid 1] AH01906: ueba.axg.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Fri Feb 14 15:54:15.710461 2025] [ssl:warn] [pid 1:tid 1] AH01909: ueba.axg.com:443:0 server certificate does NOT include an ID which matches the server name
+[Sat Feb 15 16:33:15.870330 2025] [ssl:warn] [pid 1:tid 1] AH01906: ueba.axg.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Sat Feb 15 16:33:15.870604 2025] [ssl:warn] [pid 1:tid 1] AH01909: ueba.axg.com:443:0 server certificate does NOT include an ID which matches the server name
+[Sat Feb 15 16:33:15.876825 2025] [ssl:warn] [pid 1:tid 1] AH01906: ueba.axg.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Sat Feb 15 16:33:15.876834 2025] [ssl:warn] [pid 1:tid 1] AH01909: ueba.axg.com:443:0 server certificate does NOT include an ID which matches the server name
+[Sat Feb 15 16:46:31.254497 2025] [ssl:warn] [pid 1:tid 1] AH01906: ueba.axg.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Sat Feb 15 16:46:31.254512 2025] [ssl:warn] [pid 1:tid 1] AH01909: ueba.axg.com:443:0 server certificate does NOT include an ID which matches the server name
+[Sat Feb 15 16:46:31.261136 2025] [ssl:warn] [pid 1:tid 1] AH01906: ueba.axg.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Sat Feb 15 16:46:31.261149 2025] [ssl:warn] [pid 1:tid 1] AH01909: ueba.axg.com:443:0 server certificate does NOT include an ID which matches the server name
+[Sat Feb 15 22:19:19.009020 2025] [ssl:warn] [pid 1:tid 1] AH01906: ueba.axg.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Sat Feb 15 22:19:19.009034 2025] [ssl:warn] [pid 1:tid 1] AH01909: ueba.axg.com:443:0 server certificate does NOT include an ID which matches the server name
+[Sat Feb 15 22:19:19.014902 2025] [ssl:warn] [pid 1:tid 1] AH01906: ueba.axg.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Sat Feb 15 22:19:19.014912 2025] [ssl:warn] [pid 1:tid 1] AH01909: ueba.axg.com:443:0 server certificate does NOT include an ID which matches the server name
+[Sat Feb 15 22:53:03.630555 2025] [ssl:warn] [pid 1:tid 1] AH01906: ueba.axg.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Sat Feb 15 22:53:03.630577 2025] [ssl:warn] [pid 1:tid 1] AH01909: ueba.axg.com:443:0 server certificate does NOT include an ID which matches the server name
+[Sat Feb 15 22:53:03.638629 2025] [ssl:warn] [pid 1:tid 1] AH01906: ueba.axg.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Sat Feb 15 22:53:03.638665 2025] [ssl:warn] [pid 1:tid 1] AH01909: ueba.axg.com:443:0 server certificate does NOT include an ID which matches the server name
+[Sun Feb 16 13:16:12.781878 2025] [ssl:warn] [pid 1:tid 1] AH01906: ueba.axg.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Sun Feb 16 13:16:12.781895 2025] [ssl:warn] [pid 1:tid 1] AH01909: ueba.axg.com:443:0 server certificate does NOT include an ID which matches the server name
+[Sun Feb 16 13:16:12.787582 2025] [ssl:warn] [pid 1:tid 1] AH01906: ueba.axg.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Sun Feb 16 13:16:12.787591 2025] [ssl:warn] [pid 1:tid 1] AH01909: ueba.axg.com:443:0 server certificate does NOT include an ID which matches the server name
