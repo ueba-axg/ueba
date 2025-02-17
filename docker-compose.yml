@@ -11,6 +11,8 @@ services:
       - SMTP_AUTH_PASS=${SMTP_AUTH_PASS}
       - SMTP_FROM=${SMTP_FROM}
       - SMTP_TLS=${SMTP_TLS}
+      - SMTP_TO=${SMTP_TO}
+      - SMTP_SUBJECT=${SMTP_SUBJECT}
     # 外部に公開するポート => "ホスト側:コンテナ側"
     ports:
       - "10022:22"     # SSH (ホストの10022 => コンテナの22)

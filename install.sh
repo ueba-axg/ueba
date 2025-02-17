@@ -133,7 +133,7 @@ done
 DEFAULT_SUBJECT="UEBA 結果レポート"
 while true; do
     read -p "結果レポートメールの件名(タイトル)を入力してください（デフォルト: $DEFAULT_SUBJECT）: " SMTP_SUBJECT
-    if [[ -z "$SUBJECT" ]]; then
+    if [[ -z "$SMTP_SUBJECT" ]]; then
         SMTP_SUBJECT=$DEFAULT_SUBJECT
     fi
     break
@@ -169,12 +169,12 @@ SMTP_SERVER=${SMTP_SERVER}
 SMTP_PORT=${SMTP_PORT}
 SMTP_AUTH=${SMTP_AUTH}
 SMTP_AUTH_USER=${SMTP_AUTH_USER}
-SMTP_AUTH_PASS=${SMTP_AUTH_PASS}
+SMTP_AUTH_PASS="${SMTP_AUTH_PASS}"
 SMTP_FROM=${SMTP_FROM}
 SMTP_TLS=${SMTP_TLS}
 SMTP_STARTTLS=${SMTP_STARTTLS}
 SMTP_TO=${SMTP_TO}
-SMTP_SUBJECT=${SMTP=SUBJECT}
+SMTP_SUBJECT="${SMTP_SUBJECT}"
 EOF
 
 echo ".env ファイルに SMTP 設定を保存しました。"
@@ -200,6 +200,7 @@ if [[ "$INSTALL_MSA" =~ ^(yes|y|Y|Yes|YES)$ ]]; then
     sysctl -w vm.max_map_count=262144
     echo 'vm.max_map_count = 262144' > /etc/sysctl.d/50-msa.conf
     sysctl -p /etc/sysctl.d/50-msa.conf
+    cd ..
     
     git clone https://github.com/ubiqube/quickstart.git
     cd quickstart
