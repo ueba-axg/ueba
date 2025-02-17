@@ -23,8 +23,11 @@ COPY --from=builder /usr/lib/jvm /usr/lib/jvm
 # - httpd (Webサーバ) + mod_ssl (HTTPSサポート)
 # - openssl (自己署名証明書生成)
 # - openssh-server (SSHサーバ)
-# - java-17-openjdk (Java 17 ランタイム/JDK)
 # - inotify-tools (ファイル監視コマンド)
+# - cronie (crond)
+# - findutils (findコマンド)
+# - msmtp (シンプルメール送信コマンド)
+# - upgrade-minimal --security (セキュリティパッチ)
 RUN microdnf -y install dnf \
     && dnf -y install epel-release \
     && dnf -y update \
@@ -36,14 +39,13 @@ RUN microdnf -y install dnf \
          inotify-tools \
          cronie \
          findutils \
+         msmtp \
     && dnf upgrade-minimal --security -y \
     && dnf clean all \
     && rm -rf /var/cache/dnf
 
 # 各監視対象エンティティからscpするためのユーザを作成
 RUN useradd -m -s /bin/bash ueba && \
-    # echo 'ueba:ueba@axg' | chpasswd
-    # 必要に応じて ueba のホームに SSH 公開鍵を設置する場合:
     echo 'ueba:ueba@axg' | chpasswd && \
     mkdir -p /home/ueba/.ssh && \
     chown ueba:ueba /home/ueba/.ssh && \
@@ -52,14 +54,9 @@ RUN useradd -m -s /bin/bash ueba && \
 # SSH用ディレクトリ準備
 RUN mkdir -p /var/run/sshd
 
-# - PasswordAuthentication no など、公開鍵認証のみ許可したい場合は記述
+# - パスワード認証、公開鍵認証のどちらかで認証したい場合
 RUN sed -i 's/#PasswordAuthentication yes/PasswordAuthentication yes/' /etc/ssh/sshd_config
 RUN sed -i 's/#PubkeyAuthentication yes/PubkeyAuthentication yes/' /etc/ssh/sshd_config
-
-# 以下はrootユーザのログインを許可する場合のみ
-# RUN mkdir -p /var/run/sshd \
-    # && sed -i 's/^#\\?PermitRootLogin.*/PermitRootLogin yes/' /etc/ssh/sshd_config \
-    # && echo 'root:ueba@axg' | chpasswd
 
 # httpd.confにServernameを指定
 RUN sed -i 's/^#\?ServerName .*/ServerName ueba.axg.com/' /etc/httpd/conf/httpd.conf
@@ -73,8 +70,9 @@ EXPOSE 443
 COPY ./sh/start.sh /home/ueba/start.sh
 COPY ./sh/monitor.sh /home/ueba/monitor.sh
 COPY ./sh/cleanup.sh /home/ueba/cleanup.sh
+COPY ./sh/sendmail.sh /home/ueba/sendmail.sh
 RUN  ln -s /home/ueba/cleanup.sh /etc/cron.daily/cleanup
-RUN chmod +x /home/ueba/start.sh /home/ueba/monitor.sh /home/ueba/cleanup.sh
+RUN chmod +x /home/ueba/start.sh /home/ueba/monitor.sh /home/ueba/cleanup.sh /home/ueba/sendmail.sh
 
 # コンテナ起動時のエントリーポイント
 ENTRYPOINT ["/home/ueba/start.sh"]

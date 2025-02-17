@@ -5,6 +5,12 @@ services:
     container_name: ueba_eng
     environment:
       - DATA_KEEP_DAYS=${DATA_KEEP_DAYS}
+      - SMTP_SERVER=${SMTP_SERVER}
+      - SMTP_PORT=${SMTP_PORT}
+      - SMTP_AUTH_USER=${SMTP_AUTH_USER}
+      - SMTP_AUTH_PASS=${SMTP_AUTH_PASS}
+      - SMTP_FROM=${SMTP_FROM}
+      - SMTP_TLS=${SMTP_TLS}
     # 外部に公開するポート => "ホスト側:コンテナ側"
     ports:
       - "10022:22"     # SSH (ホストの10022 => コンテナの22)

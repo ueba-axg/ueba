@@ -28,6 +28,19 @@ if [ "${DATA_KEEP_DAYS}" -lt 1 ]; then
 fi
 log_message "INFO : データ保持日数 : ${DATA_KEEP_DAYS}日"
 
+cat <<EOF > /etc/msmtprc
+account default
+host ${SMTP_SERVER}
+port ${SMTP_PORT}
+auth ${SMTP_AUTH}
+user ${SMTP_AUTH_USER}
+password ${SMTP_AUTH_PASS}
+from ${SMTP_FROM}
+tls ${SMTP_TLS}
+tls_starttls ${SMTP_STARTTLS}
+EOF
+chmod 600 /etc/msmtprc
+
 # SSH ホストキーの生成
 if [ ! -f "${SSH_KEY_DIR}/ssh_host_rsa_key" ]; then
     log_message "INFO : SSH ホストキーが見つかりません。新しく生成します。"
