@@ -7,10 +7,12 @@ services:
       - DATA_KEEP_DAYS=${DATA_KEEP_DAYS}
       - SMTP_SERVER=${SMTP_SERVER}
       - SMTP_PORT=${SMTP_PORT}
+      - SMTP_AUTH=${SMTP_AUTH}
       - SMTP_AUTH_USER=${SMTP_AUTH_USER}
       - SMTP_AUTH_PASS=${SMTP_AUTH_PASS}
       - SMTP_FROM=${SMTP_FROM}
       - SMTP_TLS=${SMTP_TLS}
+      - SMTP_STARTTLS=${SMTP_STARTTLS}
       - SMTP_TO=${SMTP_TO}
       - SMTP_SUBJECT=${SMTP_SUBJECT}
     # 外部に公開するポート => "ホスト側:コンテナ側"

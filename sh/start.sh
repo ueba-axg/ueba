@@ -27,6 +27,14 @@ if [ "${DATA_KEEP_DAYS}" -lt 1 ]; then
     exit 1
 fi
 log_message "INFO : データ保持日数 : ${DATA_KEEP_DAYS}日"
+log_message "INFO : SMTP_SERVER : ${SMTP_SERVER}"
+log_message "INFO : SMTP_PORT : ${SMTP_PORT}"
+log_message "INFO : SMTP_AUTH : ${SMTP_AUTH}"
+log_message "INFO : SMTP_AUTH_USER : ${SMTP_AUTH_USER}"
+log_message "INFO : SMTP_AUTH_PASS: ${SMTP_AUTH_PASS}"
+log_message "INFO : SMTP_FROM : ${SMTP_FROM}"
+log_message "INFO : SMTP_TLS : ${SMTP_TLS}"
+log_message "INFO : SMTP_STARTTLS : ${SMTP_STARTTLS}"
 
 cat <<EOF > /etc/msmtprc
 account default

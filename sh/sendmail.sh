@@ -33,7 +33,7 @@ fi
 TEMP_MAIL=$(mktemp /tmp/mailXXXXXX)
 echo "Subject: $SMTP_SUBJECT" > "$TEMP_MAIL"
 echo "" >> "$TEMP_MAIL"
-cat "$SMTP_BODY_FILE" >> "$TEMP_MAIL"
+cat "$1" >> "$TEMP_MAIL"
 
 # メール送信
 cat "$TEMP_MAIL" | msmtp "$SMTP_TO"

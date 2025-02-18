@@ -38,7 +38,7 @@ echo "SMTP サーバーの設定を行います。"
 
 # SMTP サーバー
 while true; do
-    read -p "SMTP サーバーを入力してください（例: smtp.example.com）: " SMTP_SERVER
+    read -p "SMTP サーバーを入力してください（例: smtp.gmail.com）: " SMTP_SERVER
     if [[ -z "$SMTP_SERVER" ]]; then
         echo "エラー: SMTP サーバーは必須です。"
         continue
