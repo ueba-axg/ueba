@@ -1,6 +1,12 @@
 # Temp files
 .env
 
+# shell folder
+sh/
+
+# Dockerfile
+Dockerfile
+
 # Volume direcctories
 logs/
 uploads/
