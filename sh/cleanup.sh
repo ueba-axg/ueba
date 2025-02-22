@@ -1,4 +1,6 @@
 #!/bin/bash
+source /etc/environment
+
 # 保存期間(日) from Environment variable defined in docker-compose.yml
 DAYS_KEEP=${DATA_KEEP_DAYS}
 

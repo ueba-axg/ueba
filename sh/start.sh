@@ -79,6 +79,8 @@ log_message "INFO : Starting SSH server..."
 
 # crond サーバ起動
 log_message "INFO : Starting crond..."
+# cron内で起動するシェルでもコンテナ環境変数を読み込めるようにする
+printenv > /etc/environment
 /usr/sbin/crond
 
 # Apache をフォアグラウンドで起動（コンテナが落ちないように）

@@ -32,6 +32,9 @@ fi
 # メールヘッダーを作成（/tmp/配下に一時ファイル）
 TEMP_MAIL=$(mktemp /tmp/mailXXXXXX)
 echo "Subject: $SMTP_SUBJECT" > "$TEMP_MAIL"
+echo "To: $SMTP_TO" >> "$TEMP_MAIL"
+echo "Content-Type: text/plain; charset=UTF-8" >> "$TEMP_MAIL"
+echo "Content-Transfer-Encoding: 8bit" >> "$TEMP_MAIL"
 echo "" >> "$TEMP_MAIL"
 cat "$1" >> "$TEMP_MAIL"
 

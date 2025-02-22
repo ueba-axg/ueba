@@ -71,6 +71,8 @@ COPY ./sh/start.sh /home/ueba/start.sh
 COPY ./sh/monitor.sh /home/ueba/monitor.sh
 COPY ./sh/cleanup.sh /home/ueba/cleanup.sh
 COPY ./sh/sendmail.sh /home/ueba/sendmail.sh
+COPY ./sh/ff2.txt /home/ueba/ff2.txt
+# COPY ./sh/xxx.jar /home/ueba/xxx.jar
 RUN  ln -s /home/ueba/cleanup.sh /etc/cron.daily/cleanup
 RUN chmod +x /home/ueba/start.sh /home/ueba/monitor.sh /home/ueba/cleanup.sh /home/ueba/sendmail.sh
 
