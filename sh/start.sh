@@ -33,8 +33,10 @@ log_message "INFO : SMTP_AUTH : ${SMTP_AUTH}"
 log_message "INFO : SMTP_AUTH_USER : ${SMTP_AUTH_USER}"
 log_message "INFO : SMTP_AUTH_PASS: ${SMTP_AUTH_PASS}"
 log_message "INFO : SMTP_FROM : ${SMTP_FROM}"
+log_message "INFO : SMTP_TO : ${SMTP_TO}"
 log_message "INFO : SMTP_TLS : ${SMTP_TLS}"
 log_message "INFO : SMTP_STARTTLS : ${SMTP_STARTTLS}"
+log_message "INFO : SMTP_SUBJECT : ${SMTP_SUBJECT}"
 
 cat <<EOF > /etc/msmtprc
 account default
