@@ -1,7 +1,7 @@
 services:
   ueba-eng:
     build: .
-    image: masa555/ueba:ueba-0.8.0
+    image: axgueba/ueba:ueba-0.8.0
     container_name: ueba_eng
     environment:
       - DATA_KEEP_DAYS=${DATA_KEEP_DAYS}
