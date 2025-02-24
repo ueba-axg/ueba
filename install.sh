@@ -2,28 +2,47 @@
 
 set -e  # エラー時にスクリプトを終了
 
-# データ保持期間の入力
-DEFAULT_DAYS=90
+#!/bin/bash
+
+# 固定のDocker Hubユーザー名
+DOCKER_USER="ueba-axg"
+
+# .envファイルが存在する場合、読み込む
+if [ -f .env ]; then
+    echo ".env ファイルを読み込みます..."
+    export $(grep -v '^#' .env | xargs)
+fi
+
 while true; do
-    read -p "データ保持期間（日数）を入力してください（デフォルト: $DEFAULT_DAYS）: " DATA_KEEP_DAYS
-    
-    # デフォルト値を適用
-    if [ -z "$DATA_KEEP_DAYS" ]; then
-        DATA_KEEP_DAYS=$DEFAULT_DAYS
+    # 操作者にアクセストークンを入力させる（入力は非表示）
+    read -s -p "お客様に払い出されたDocker Hubのアクセストークンを入力してください: " DOCKER_TOKEN
+    echo ""
+
+    # Docker Hubにログイン
+    echo "{$DOCKER_TOKEN}" | docker login --username "${DOCKER_USER}" --password-stdin
+
+    # ログイン成功した場合はループを抜ける
+    if [ $? -eq 0 ]; then
+        echo "有効なアクセストークンが入力されました"
+        break
+    else
+        echo "無効なアクセストークンが入力されました。正しいアクセストークンを入力してください。"
     fi
-    
-    # 数値チェック
+done
+
+# データ保持期間の入力
+default_value=${DATA_KEEP_DAYS:-90}
+while true; do
+    read -p "データ保持期間（日数）を入力してください（デフォルト: $default_value）: " DATA_KEEP_DAYS
+    DATA_KEEP_DAYS=${DATA_KEEP_DAYS:-$default_value}
     if ! [[ "$DATA_KEEP_DAYS" =~ ^[0-9]+$ ]]; then
         echo "エラー: 数値を入力してください。"
         continue
     fi
-    
-    # 範囲チェック（1以上）
     if [ "$DATA_KEEP_DAYS" -lt 1 ]; then
         echo "エラー: 1以上の日数を入力してください。"
         continue
     fi
-    
     break
 done
 
@@ -37,8 +56,10 @@ cat .env
 echo "SMTP サーバーの設定を行います。"
 
 # SMTP サーバー
+SMTP_SERVER=${SMTP_SERVER:-}
 while true; do
-    read -p "SMTP サーバーを入力してください（例: smtp.gmail.com）: " SMTP_SERVER
+    read -p "SMTP サーバーを入力してください（現在の値: ${SMTP_SERVER:-なし}）: " input
+    SMTP_SERVER=${input:-$SMTP_SERVER}
     if [[ -z "$SMTP_SERVER" ]]; then
         echo "エラー: SMTP サーバーは必須です。"
         continue
@@ -47,12 +68,10 @@ while true; do
 done
 
 # SMTP ポート（587, 465, 25 など）
-DEFAULT_SMTP_PORT=587
+SMTP_PORT=${SMTP_PORT:-587}
 while true; do
-    read -p "SMTP ポートを入力してください（デフォルト: $DEFAULT_SMTP_PORT）: " SMTP_PORT
-    if [ -z "$SMTP_PORT" ]; then
-        SMTP_PORT=$DEFAULT_SMTP_PORT
-    fi
+    read -p "SMTP ポートを入力してください（デフォルト: $SMTP_PORT）: " input
+    SMTP_PORT=${input:-$SMTP_PORT}
     if ! [[ "$SMTP_PORT" =~ ^[0-9]+$ ]]; then
         echo "エラー: 数値を入力してください。"
         continue
@@ -65,10 +84,10 @@ while true; do
 done
 
 # SMTP 認証の有無
-DEFAULT_SMTP_AUTH="on"
+SMTP_AUTH=${SMTP_AUTH:-on}
 while true; do
-    read -p "SMTP 認証を使用しますか？ (on/off, デフォルト: $DEFAULT_SMTP_AUTH): " SMTP_AUTH
-    SMTP_AUTH=${SMTP_AUTH:-$DEFAULT_SMTP_AUTH}
+    read -p "SMTP 認証を使用しますか？ (on/off, 現在の値: $SMTP_AUTH): " input
+    SMTP_AUTH=${input:-$SMTP_AUTH}
     if [[ "$SMTP_AUTH" != "on" && "$SMTP_AUTH" != "off" ]]; then
         echo "エラー: on または off を入力してください。"
         continue
@@ -77,11 +96,11 @@ while true; do
 done
 
 # SMTP 認証ユーザー名（認証が "on" の場合のみ入力）
-SMTP_AUTH_USER=""
-SMTP_AUTH_PASS=""
 if [[ "$SMTP_AUTH" == "on" ]]; then
+    SMTP_AUTH_USER=${SMTP_AUTH_USER:-}
     while true; do
-        read -p "SMTP 認証ユーザー名を入力してください（例: user@example.com または user123）: " SMTP_AUTH_USER
+        read -p "SMTP 認証ユーザー名を入力してください（現在の値: ${SMTP_AUTH_USER:-なし}）: " input
+        SMTP_AUTH_USER=${input:-$SMTP_AUTH_USER}
         if [[ -z "$SMTP_AUTH_USER" ]]; then
             echo "エラー: SMTP 認証ユーザー名は必須です。"
             continue
@@ -89,10 +108,11 @@ if [[ "$SMTP_AUTH" == "on" ]]; then
         break
     done
 
-    # SMTP 認証パスワード（入力を非表示）
+    SMTP_AUTH_PASS=${SMTP_AUTH_PASS:-}
     while true; do
-        read -sp "SMTP 認証パスワードを入力してください（入力は非表示）: " SMTP_AUTH_PASS
+        read -sp "SMTP 認証パスワードを入力してください（現在の値: ${SMTP_AUTH_PASS:+********}）: " input
         echo
+        SMTP_AUTH_PASS=${input:-$SMTP_AUTH_PASS}
         if [[ -z "$SMTP_AUTH_PASS" ]]; then
             echo "エラー: SMTP 認証パスワードは必須です。"
             continue
@@ -102,8 +122,10 @@ if [[ "$SMTP_AUTH" == "on" ]]; then
 fi
 
 # 送信先メールアドレス
+SMTP_TO=${SMTP_TO:-}
 while true; do
-    read -p "送信先メールアドレス（Toアドレス）を入力してください: " SMTP_TO
+    read -p "送信先メールアドレス（Toアドレス）を入力してください（現在の値: ${SMTP_TO:-なし}）: " input
+    SMTP_TO=${input:-$SMTP_TO}
     if [[ -z "$SMTP_TO" ]]; then
         echo "エラー: 送信先メールアドレスは必須です。"
         continue
@@ -116,8 +138,10 @@ while true; do
 done
 
 # 送信元メールアドレス
+SMTP_FROM=${SMTP_FROM:-}
 while true; do
-    read -p "送信元メールアドレス（Fromアドレス）を入力してください: " SMTP_FROM
+    read -p "送信元メールアドレス（Fromアドレス）を入力してください（現在の値: ${SMTP_FROM:-なし}）: " input
+    SMTP_FROM=${input:-$SMTP_FROM}
     if [[ -z "$SMTP_FROM" ]]; then
         echo "エラー: 送信元メールアドレスは必須です。"
         continue
@@ -129,21 +153,19 @@ while true; do
     break
 done
 
-# Subject (デフォルト：UEBA 結果レポート)
-DEFAULT_SUBJECT="UEBA 結果レポート"
+# Subject の入力
+SMTP_SUBJECT=${SMTP_SUBJECT:-"UEBA 結果レポート"}
 while true; do
-    read -p "結果レポートメールの件名(タイトル)を入力してください（デフォルト: $DEFAULT_SUBJECT）: " SMTP_SUBJECT
-    if [[ -z "$SMTP_SUBJECT" ]]; then
-        SMTP_SUBJECT=$DEFAULT_SUBJECT
-    fi
+    read -p "結果レポートメールの件名(タイトル)を入力してください（現在の値: ${SMTP_SUBJECT}）: " input
+    SMTP_SUBJECT=${input:-$SMTP_SUBJECT}
     break
 done
 
 # TLS の有効化
-DEFAULT_SMTP_TLS="on"
+SMTP_TLS=${SMTP_TLS:-"on"}
 while true; do
-    read -p "SMTP TLS を有効にしますか？ (on/off, デフォルト: $DEFAULT_SMTP_TLS): " SMTP_TLS
-    SMTP_TLS=${SMTP_TLS:-$DEFAULT_SMTP_TLS}
+    read -p "SMTP TLS を有効にしますか？ (on/off, 現在の値: ${SMTP_TLS}): " input
+    SMTP_TLS=${input:-$SMTP_TLS}
     if [[ "$SMTP_TLS" != "on" && "$SMTP_TLS" != "off" ]]; then
         echo "エラー: on または off を入力してください。"
         continue
@@ -152,10 +174,10 @@ while true; do
 done
 
 # STARTTLS の設定
-DEFAULT_SMTP_STARTTLS="on"
+SMTP_STARTTLS=${SMTP_STARTTLS:-"on"}
 while true; do
-    read -p "SMTP STARTTLS を有効にしますか？ (on/off, デフォルト: $DEFAULT_SMTP_STARTTLS): " SMTP_STARTTLS
-    SMTP_STARTTLS=${SMTP_STARTTLS:-$DEFAULT_SMTP_STARTTLS}
+    read -p "SMTP STARTTLS を有効にしますか？ (on/off, 現在の値: ${SMTP_STARTTLS}): " input
+    SMTP_STARTTLS=${input:-$SMTP_STARTTLS}
     if [[ "$SMTP_STARTTLS" != "on" && "$SMTP_STARTTLS" != "off" ]]; then
         echo "エラー: on または off を入力してください。"
         continue
