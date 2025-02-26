@@ -5,7 +5,7 @@ set -e  # エラー時にスクリプトを終了
 #!/bin/bash
 
 # 固定のDocker Hubユーザー名
-DOCKER_USER="ueba-axg"
+DOCKER_USER="axgueba"
 
 # .envファイルが存在する場合、読み込む
 if [ -f .env ]; then
