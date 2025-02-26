@@ -1,13 +1,13 @@
 # Dockerfile (AlmaLinux + SSH + HTTP + HTTPS + Java 17 + inotify-tools)
 # (1) ビルド用のステージ
-FROM almalinux:9.2-minimal AS builder
+#FROM almalinux:9.2-minimal AS builder
 
-RUN microdnf -y install dnf \
-    && dnf -y install epel-release \
-    && dnf -y update \
-    && dnf -y install java-17-openjdk-headless \
-    && dnf clean all \
-    && rm -rf /var/cache/dnf
+#RUN microdnf -y install dnf \
+#    && dnf -y install epel-release \
+#    && dnf -y update \
+#    && dnf -y install java-17-openjdk \
+#    && dnf clean all \
+#    && rm -rf /var/cache/dnf
 
 # (2) 最終的なランタイム環境 (最小化)
 FROM almalinux:9.2-minimal
@@ -17,7 +17,11 @@ RUN ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime && \
     echo "Asia/Tokyo" > /etc/timezone
 
 # ビルドした成果物だけをコピー
-COPY --from=builder /usr/lib/jvm /usr/lib/jvm
+#COPY --from=builder /usr/lib/jvm /usr/lib/jvm
+#COPY --from=builder /usr/bin/java /usr/bin/java
+# 環境変数を設定（必要なら）
+#ENV JAVA_HOME=/usr/lib/jvm/java-17-openjdk-17.0.14.0.7-2.el9.alma.1.x86_64
+#ENV PATH="$JAVA_HOME/bin:$PATH"
 
 # システム更新 & 必要パッケージのインストール
 # - httpd (Webサーバ) + mod_ssl (HTTPSサポート)
@@ -32,6 +36,7 @@ RUN microdnf -y install dnf \
     && dnf -y install epel-release \
     && dnf -y update \
     && dnf -y install \
+         java-21-openjdk \
          httpd \
          mod_ssl \
          openssl \
@@ -60,6 +65,16 @@ RUN sed -i 's/#PubkeyAuthentication yes/PubkeyAuthentication yes/' /etc/ssh/sshd
 
 # httpd.confにServernameを指定
 RUN sed -i 's/^#\?ServerName .*/ServerName ueba.axg.com/' /etc/httpd/conf/httpd.conf
+# httpd.confに追加設定
+RUN echo '<Directory "/var/www/html/reports">' >> /etc/httpd/conf/httpd.conf
+RUN echo '    AllowOverride All' >> /etc/httpd/conf/httpd.conf
+RUN echo '    Require all granted' >> /etc/httpd/conf/httpd.conf
+RUN echo '    Header set Content-Type "text/html; charset=UTF-8"' >> /etc/httpd/conf.d/autoindex.conf
+RUN echo '</Directory>' >> /etc/httpd/conf/httpd.conf
+
+# AIエンジンのコピー
+RUN mkdir -p /opt/uebaeng
+COPY ./uebaeng/* /opt/uebaeng
 
 # EXPOSE: コンテナ内部のSSH(22), HTTP(80), HTTPS(443)
 EXPOSE 22
@@ -72,7 +87,10 @@ COPY ./sh/monitor.sh /home/ueba/monitor.sh
 COPY ./sh/cleanup.sh /home/ueba/cleanup.sh
 COPY ./sh/sendmail.sh /home/ueba/sendmail.sh
 COPY ./sh/ff2.txt /home/ueba/ff2.txt
-# COPY ./sh/xxx.jar /home/ueba/xxx.jar
+COPY ./html/HEADER.html /var/www/html/HEADER.html
+COPY ./html/README.html /var/www/html/README.html
+COPY ./html/style.css /var/www/html/style.css
+COPY ./html/.htaccess /var/www/html/.htaccess
 RUN  ln -s /home/ueba/cleanup.sh /etc/cron.daily/cleanup
 RUN chmod +x /home/ueba/start.sh /home/ueba/monitor.sh /home/ueba/cleanup.sh /home/ueba/sendmail.sh
 

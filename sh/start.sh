@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -E
+#set -E
 exec >> /var/log/ueba/start.log 2>&1
 trap 'echo "ERROR: コマンド ${BASH_COMMAND} が失敗しました。終了コード: $?" >&2; exit 1' ERR
 
@@ -72,6 +72,10 @@ else
     log_message "INFO : 既存の SSL 証明書が見つかりました。再生成は行いません。"
 fi
 
+cp -p /var/www/html/HEADER.html /var/www/html/reports/HEADER.html
+cp -p /var/www/html/README.html /var/www/html/reports/README.html
+cp -p /var/www/html/style.css /var/www/html/reports/style.css
+cp -p /var/www/html/.htaccess /var/www/html/reports/.htaccess
 # ファイル到着監視の起動
 log_message "INFO : Starting File monitoring..."
 /home/ueba/monitor.sh >> /var/log/ueba/monitoring.log 2>&1 &
