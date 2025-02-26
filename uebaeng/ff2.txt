@@ -1,6 +1,0 @@
-```
-"root",".*cron"
-"root","ionice"
-"/bin/sh -c /usr/sbin/ip .*show$"
-"root","renice"
-```
