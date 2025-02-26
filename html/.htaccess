@@ -1,0 +1,8 @@
+IndexIgnore style.css ..
+IndexOptions NameWidth=* +FancyIndexing +SuppressDescription
+IndexOrderDefault Descending Date
+<FilesMatch "\.xlsx$">
+  ForceType application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+  Header set Content-Disposition "attachment"
+</FilesMatch>
+
