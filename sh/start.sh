@@ -15,6 +15,12 @@ log_message() {
     echo "`date '+%Y:%m:%d %H:%M:%S'` $0:$@"
 }
 
+# 各ディレクトリのパーミッション変更
+chown ueba:ueba /home/ueba/uploads
+chown ueba:ueba /var/www/html/reports
+chmod 755 /home/ueba/uploads
+chmod 755 /var/www/html/reports
+
 # 環境変数チェック
 ## データ保持期間(数値であること)
 if ! echo "${DATA_KEEP_DAYS}" | grep -qE '^[0-9]+$'; then
@@ -87,7 +93,7 @@ log_message "INFO : Starting SSH server..."
 # crond サーバ起動
 log_message "INFO : Starting crond..."
 # cron内で起動するシェルでもコンテナ環境変数を読み込めるようにする
-printenv > /etc/environment
+echo "DATA_KEEP_DAYS=${DATA_KEEP_DAYS}" > /etc/environment
 /usr/sbin/crond
 
 # Apache をフォアグラウンドで起動（コンテナが落ちないように）

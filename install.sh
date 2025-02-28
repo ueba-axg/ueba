@@ -7,10 +7,38 @@ set -e  # エラー時にスクリプトを終了
 # 固定のDocker Hubユーザー名
 DOCKER_USER="axgueba"
 
+# 必要な最低バージョン
+MIN_DOCKER_VERSION="1.27.0"
+
+# Docker がインストールされているか確認
+if ! command -v docker &> /dev/null; then
+    echo "Error: Docker is not installed. Please install Docker first."
+    exit 1
+fi
+
+# Docker のバージョンを取得
+DOCKER_VERSION=$(sudo docker version --format '{{.Server.Version}}')
+
+# バージョンの比較 (新しいバージョンが必要)
+if [ "$(printf '%s\n' "$MIN_DOCKER_VERSION" "$DOCKER_VERSION" | sort -V | head -n1)" != "$MIN_DOCKER_VERSION" ]; then
+    echo "Error: Docker version must be $MIN_DOCKER_VERSION or later. Current version: $DOCKER_VERSION"
+    exit 1
+fi
+
+# docker compose コマンドが利用可能か確認
+if ! docker compose version &> /dev/null; then
+    echo "Error: docker compose is not available. Please install the docker-compose-plugin."
+    exit 1
+fi
+
+echo "Success: Docker and docker compose are properly installed."
+
 # .envファイルが存在する場合、読み込む
 if [ -f .env ]; then
     echo ".env ファイルを読み込みます..."
-    export $(grep -v '^#' .env | xargs)
+    set -a
+    source .env
+    set +a
 fi
 
 while true; do
@@ -19,7 +47,7 @@ while true; do
     echo ""
 
     # Docker Hubにログイン
-    echo "{$DOCKER_TOKEN}" | docker login --username "${DOCKER_USER}" --password-stdin
+    echo "${DOCKER_TOKEN}" | sudo docker login --username "${DOCKER_USER}" --password-stdin
 
     # ログイン成功した場合はループを抜ける
     if [ $? -eq 0 ]; then
@@ -209,7 +237,7 @@ if [ ! -f "docker-compose.yml" ]; then
     exit 1
 fi
 
-docker compose up -d
+sudo docker compose up -d
 
 echo "ueba-eng のインストールが完了しました。"
 
@@ -219,14 +247,14 @@ INSTALL_MSA=${INSTALL_MSA:-yes}
 
 if [[ "$INSTALL_MSA" =~ ^(yes|y|Y|Yes|YES)$ ]]; then
     echo "MSActivator をインストールします..."
-    sysctl -w vm.max_map_count=262144
-    echo 'vm.max_map_count = 262144' > /etc/sysctl.d/50-msa.conf
-    sysctl -p /etc/sysctl.d/50-msa.conf
+    sudo sysctl -w vm.max_map_count=262144
+    echo 'vm.max_map_count = 262144' | sudo tee /etc/sysctl.d/50-msa.conf
+    sudo sysctl -p /etc/sysctl.d/50-msa.conf
     cd ..
     
     git clone https://github.com/ubiqube/quickstart.git
     cd quickstart
-    ./scripts/install.sh
+    sudo ./scripts/install.sh
     echo "MSActivator のインストールが完了しました。"
 else
     echo "MSActivator のインストールをスキップしました。"
