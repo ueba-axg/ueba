@@ -92,6 +92,35 @@ while true; do
         echo "エラー: SMTP サーバーは必須です。"
         continue
     fi
+    # ドメイン or IP アドレスの基本チェック
+    if ! [[ "$SMTP_SERVER" =~ ^[a-zA-Z0-9.-]+$ ]] || [[ "$SMTP_SERVER" =~ (^-|-$|^\.) ]]; then
+        echo "エラー: 無効なSMTPサーバー名です（特殊文字や不正なフォーマット）。"
+        continue
+    fi
+
+    # IPアドレスかホスト名か判定
+    if [[ "$SMTP_SERVER" =~ ^([0-9]{1,3}\.){3}[0-9]{1,3}$ ]]; then
+        # IPアドレスの範囲チェック（0.0.0.0 ～ 255.255.255.255）
+        IFS='.' read -r -a octets <<< "$SMTP_SERVER"
+        valid=true
+        for octet in "${octets[@]}"; do
+            if ((octet < 0 || octet > 255)); then
+                valid=false
+                break
+            fi
+        done
+        if ! $valid; then
+            echo "エラー: 無効なIPアドレス範囲です。"
+            continue
+        fi
+    else
+        # DNS解決チェック（ICMPではなくDNSベースのチェック）
+        if ! nslookup "$SMTP_SERVER" > /dev/null 2>&1 && ! dig +short "$SMTP_SERVER" > /dev/null 2>&1; then
+            echo "エラー: SMTPサーバー '$SMTP_SERVER' のDNS解決ができません。正しいホスト名またはIPアドレスを入力してください。"
+            continue
+        fi
+    fi
+
     break
 done
 

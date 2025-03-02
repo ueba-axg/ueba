@@ -10,6 +10,11 @@ SSH_KEY_DIR="/etc/ssh"
 SSL_KEY="/etc/pki/tls/private/localhost.key"
 SSL_CERT="/etc/pki/tls/certs/localhost.crt"
 
+# Report file configuration
+HTPASSWD_FILE="/var/www/.htpasswd"
+DEFAULT_USER="admin"
+DEFAULT_PASSWORD="ueba"  # 初回デフォルトパスワード（後で変更推奨）
+
 # ログ出力関数
 log_message() {
     echo "`date '+%Y:%m:%d %H:%M:%S'` $0:$@"
@@ -82,6 +87,20 @@ cp -p /var/www/html/HEADER.html /var/www/html/reports/HEADER.html
 cp -p /var/www/html/README.html /var/www/html/reports/README.html
 cp -p /var/www/html/style.css /var/www/html/reports/style.css
 cp -p /var/www/html/.htaccess /var/www/html/reports/.htaccess
+
+# .htpasswd がない場合に作成
+if [ ! -f "$HTPASSWD_FILE" ]; then
+    touch "$HTPASSWD_FILE"
+    chmod 640 "$HTPASSWD_FILE"
+    chown root:apache "$HTPASSWD_FILE"
+
+    # デフォルトユーザー追加（Bcryptハッシュ化）
+    htpasswd -b -c "$HTPASSWD_FILE" "$DEFAULT_USER" "$DEFAULT_PASSWORD"
+    log_message "INFO : レポート画面のベーシック認証用ユーザを作成しました"
+else
+    log_message "INFO : レポート画面のベーシック認証用ユーザが見つかりました。新規作成をスキップします。"
+fi
+
 # ファイル到着監視の起動
 log_message "INFO : Starting File monitoring..."
 /home/ueba/monitor.sh >> /var/log/ueba/monitoring.log 2>&1 &

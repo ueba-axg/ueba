@@ -87,12 +87,17 @@ COPY ./sh/monitor.sh /home/ueba/monitor.sh
 COPY ./sh/cleanup.sh /home/ueba/cleanup.sh
 COPY ./sh/sendmail.sh /home/ueba/sendmail.sh
 COPY ./sh/ff2.txt /home/ueba/ff2.txt
+COPY ./sh/change_password.sh /var/www/cgi-bin/change_password
 COPY ./html/HEADER.html /var/www/html/HEADER.html
 COPY ./html/README.html /var/www/html/README.html
 COPY ./html/style.css /var/www/html/style.css
 COPY ./html/.htaccess /var/www/html/.htaccess
 RUN  ln -s /home/ueba/cleanup.sh /etc/cron.daily/cleanup
 RUN chmod +x /home/ueba/start.sh /home/ueba/monitor.sh /home/ueba/cleanup.sh /home/ueba/sendmail.sh
+# 所有者を root、グループを apache に設定
+RUN chown root:apache /var/www/cgi-bin/change_password
+# 実行可能にするが、一般ユーザーからはアクセス不可
+RUN chmod 750 /var/www/cgi-bin/change_password
 
 # コンテナ起動時のエントリーポイント
 ENTRYPOINT ["/home/ueba/start.sh"]

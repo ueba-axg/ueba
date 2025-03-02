@@ -1,6 +1,12 @@
 IndexIgnore style.css ..
 IndexOptions NameWidth=* +FancyIndexing +SuppressDescription
 IndexOrderDefault Descending Date
+
+AuthType Basic
+AuthName "Restricted Area"
+AuthUserFile /var/www/.htpasswd
+Require valid-user
+
 <FilesMatch "\.xlsx$">
   ForceType application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
   Header set Content-Disposition "attachment"
