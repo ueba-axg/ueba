@@ -4,7 +4,7 @@ IndexOrderDefault Descending Date
 
 AuthType Basic
 AuthName "Restricted Area"
-AuthUserFile /var/www/.htpasswd
+AuthUserFile /var/www/htpasswd/.htpasswd
 Require valid-user
 
 <FilesMatch "\.xlsx$">

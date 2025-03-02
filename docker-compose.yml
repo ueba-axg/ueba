@@ -25,7 +25,7 @@ services:
       - ./logs/ueba:/var/log/ueba  # 任意: ログディレクトリをホストにマウントしたい場合など
       - ./reports:/var/www/html/reports
       - ./uploads:/home/ueba/uploads
-      - htpasswd-volume:/var/www/.htpasswd
+      - htpasswd-volume:/var/www/htpasswd
       - ssh_key:/home/ueba/.ssh
       - sshd_key:/etc/ssh
       - pki_keys:/etc/pki

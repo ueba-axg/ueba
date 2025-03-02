@@ -2,4 +2,26 @@
     <link rel="stylesheet" type="text/css" href="style.css">
     <h1>📂 UEBA 結果レポート</h1>
     <p>Welcome to the UEBA reports page. Browse the files below.</p>
+    <div class="password-change">
+        <button onclick="location.href='/cgi-bin/change_password'">🔒 パスワード変更</button>
+    </div>
 </div>
+
+<style>
+    .password-change {
+        text-align: right;
+        margin-top: 10px;
+    }
+    .password-change button {
+        background-color: #5cb85c;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        font-size: 14px;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    .password-change button:hover {
+        background-color: #4cae4c;
+    }
+</style>

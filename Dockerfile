@@ -65,6 +65,7 @@ RUN sed -i 's/#PubkeyAuthentication yes/PubkeyAuthentication yes/' /etc/ssh/sshd
 
 # httpd.confにServernameを指定
 RUN sed -i 's/^#\?ServerName .*/ServerName ueba.axg.com/' /etc/httpd/conf/httpd.conf
+RUN sed -i '/<Directory "\/var\/www\/cgi-bin">/,/<\/Directory>/ s|AllowOverride None|AllowOverride All|' /etc/httpd/conf/httpd.conf
 # httpd.confに追加設定
 RUN echo '<Directory "/var/www/html/reports">' >> /etc/httpd/conf/httpd.conf
 RUN echo '    AllowOverride All' >> /etc/httpd/conf/httpd.conf
@@ -92,6 +93,8 @@ COPY ./html/HEADER.html /var/www/html/HEADER.html
 COPY ./html/README.html /var/www/html/README.html
 COPY ./html/style.css /var/www/html/style.css
 COPY ./html/.htaccess /var/www/html/.htaccess
+COPY ./html/.htaccess_for_cgi /var/www/cgi-bin/.htaccess
+COPY ./html/index.html /var/www/html/index.html
 RUN  ln -s /home/ueba/cleanup.sh /etc/cron.daily/cleanup
 RUN chmod +x /home/ueba/start.sh /home/ueba/monitor.sh /home/ueba/cleanup.sh /home/ueba/sendmail.sh
 # 所有者を root、グループを apache に設定

@@ -11,7 +11,7 @@ SSL_KEY="/etc/pki/tls/private/localhost.key"
 SSL_CERT="/etc/pki/tls/certs/localhost.crt"
 
 # Report file configuration
-HTPASSWD_FILE="/var/www/.htpasswd"
+HTPASSWD_FILE="/var/www/htpasswd/.htpasswd"
 DEFAULT_USER="admin"
 DEFAULT_PASSWORD="ueba"  # 初回デフォルトパスワード（後で変更推奨）
 
@@ -78,7 +78,9 @@ if [ ! -f "$SSL_KEY" ] || [ ! -f "$SSL_CERT" ]; then
         -keyout "$SSL_KEY" \
         -x509 -days 3650 \
         -out "$SSL_CERT" \
-        -subj "/C=JP/ST=Tokyo/L=Chiyoda/O=MyOrg/CN=localhost"
+        -subj "/C=JP/ST=Tokyo/L=Chiyoda/O=MyOrg/CN=ueba.axg.com" \
+    -addext "basicConstraints=CA:FALSE" \
+    -addext "subjectAltName=DNS:ueba.axg.com,DNS:localhost,IP:127.0.0.1"
 else
     log_message "INFO : 既存の SSL 証明書が見つかりました。再生成は行いません。"
 fi
@@ -92,7 +94,7 @@ cp -p /var/www/html/.htaccess /var/www/html/reports/.htaccess
 if [ ! -f "$HTPASSWD_FILE" ]; then
     touch "$HTPASSWD_FILE"
     chmod 640 "$HTPASSWD_FILE"
-    chown root:apache "$HTPASSWD_FILE"
+    chown apache:apache "$HTPASSWD_FILE"
 
     # デフォルトユーザー追加（Bcryptハッシュ化）
     htpasswd -b -c "$HTPASSWD_FILE" "$DEFAULT_USER" "$DEFAULT_PASSWORD"
