@@ -1,5 +1,5 @@
 IndexIgnore style.css ..
-IndexOptions NameWidth=* +FancyIndexing +SuppressDescription
+IndexOptions NameWidth=* +FancyIndexing +SuppressDescription +SuppressIcon
 IndexOrderDefault Descending Date
 
 AuthType Basic
